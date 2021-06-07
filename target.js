@@ -1,10 +1,9 @@
 class Target {
-    constructor(vo, theta, h, x, y, size) {
+    constructor(vo, theta, h, x, size) {
         this.vo = vo;
         this.theta = theta * PI / 180;
         this.h = h;
         this.x_inicial = x;
-        this.y_inicial = y;
         this.x = 0;
         this.y = 0;
         this.g = 9.8;
@@ -39,9 +38,9 @@ class TargetFactory {
         if( random(1) < this.bombP) {
             //bombs.push(new Bomb(random(width),random(height),100));
             console.log("Bomba");
-            return new Bomb(random(50,100), random(60,80),random(60,height), random(width/2), -1, random(50,120));
+            return new Bomb(random(80,125), random(60,120),-1, random(width/2), random(50,120));
         } else {
-            return new Fruit(random(50,100), random(60,80),random(60,height), random(width/2), -1, random(50,120));
+            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(50,120));
         }
     }
 }

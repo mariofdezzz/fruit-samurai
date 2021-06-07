@@ -5,7 +5,7 @@ let steps = stepsPerTarget;
 let targets = [];
 let bombs = [];
 let puntuation = 0;
-let higScore = 0;
+let highScore = 0;
 let lives = 3;
 let pauseButton;
 let playButton;
@@ -105,7 +105,7 @@ function draw(){
       textAlign(CENTER, CENTER);
       text("Has perdido", width/2, height/3);
       textSize(30);
-      text("Puntuación: " + puntuation + "    HigScore: " + higScore, width/2, height/3 + 60);
+      text("Puntuación: " + puntuation + "    HighScore: " + highScore, width/2, height/3 + 60);
       
       resetButton.move(width/2 - resetButton.width/2,height/3 + 100);
 
@@ -185,7 +185,7 @@ function resetGame(){
 }
 
 function endGame(){
-  if(puntuation > higScore) higScore = puntuation;
+  if(puntuation > highScore) highScore = puntuation;
   mode = 3;
   changeHide();
 }
