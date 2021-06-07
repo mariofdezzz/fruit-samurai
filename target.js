@@ -33,11 +33,12 @@ class Target {
 
 class TargetFactory {
 
-    bombP = 0.4;
+    static bombP = 0.4;
 
     static getNewTarget(){
-        if(random(1) < this.bombP) {
+        if( random(1) < this.bombP) {
             //bombs.push(new Bomb(random(width),random(height),100));
+            console.log("Bomba");
             return new Bomb(random(50,100), random(60,80),random(60,height), random(width/2), -1, random(50,120));
         } else {
             return new Fruit(random(50,100), random(60,80),random(60,height), random(width/2), -1, random(50,120));

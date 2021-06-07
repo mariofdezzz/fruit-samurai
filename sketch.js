@@ -59,7 +59,7 @@ function draw(){
 
       if( steps <= 0){  
         targets.push(TargetFactory.getNewTarget());
-		
+
         stepsPerTarget = random(10,50);
         
         steps = stepsPerTarget;
@@ -129,6 +129,8 @@ function paintGame(){
           }
         }
 
+		if( lives < 1 ) endGame;
+
         fill(0);
         rect(0,0,width,80);
         fill(225);
@@ -151,7 +153,7 @@ function paintFingers(){
   }
 }
 
-function ChangeHide(){
+function changeHide(){
   switch(mode){
     case 0: //menu
       pauseButton.hide = true;
@@ -175,15 +177,15 @@ function ChangeHide(){
   }
 }
 
-function ResetGame(){
+function resetGame(){
   puntuation = 0;
   lives = 3;
   mode = 1;
   targets =[];
 }
 
-function EndGame(){
+function endGame(){
   if(puntuation > higScore) higScore = puntuation;
   mode = 3;
-  ChangeHide();
+  changeHide();
 }

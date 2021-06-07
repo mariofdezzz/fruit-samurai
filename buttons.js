@@ -50,7 +50,7 @@ class PauseButton extends Buttom{
     mode = 2;
     //playButton.hide = false;
     //this.hide = true;
-    ChangeHide();
+    changeHide();
   }
 }
 
@@ -72,7 +72,7 @@ class PlayButton extends Buttom{
     mode = 1;
     //this.hide = true;
     //pauseButton.hide = false;
-    ChangeHide();
+    changeHide();
   }
 }
 
@@ -92,7 +92,7 @@ class ResetButton extends Buttom{
   }
   
   press(){
-    ResetGame();
-    ChangeHide();
+    resetGame();
+    changeHide();
   }
 }
