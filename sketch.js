@@ -2,7 +2,6 @@ var landmarks;
 let capture;
 let stepsPerTarget = 20;
 let steps = stepsPerTarget;
-let bombP = 40;
 let targets = [];
 let bombs = [];
 let puntuation = 0;
@@ -17,7 +16,7 @@ let img;
 let mode = 0;
  
 function preload() {
-  img = loadImage('assets/Bananas.png');
+  img = loadImage('assets/platano.gif');
 }
 
 function setup() {
@@ -59,13 +58,10 @@ function draw(){
       pop();
 
       if( steps <= 0){  
-        targets.push(new Fruit(random(50,100), random(60,80),random(60,height), random(width/2), random(height), random(50,120)));
-
+        targets.push(TargetFactory.getNewTarget());
+		
         stepsPerTarget = random(10,50);
-        if(random(1) < bombP/100) {
-          //bombs.push(new Bomb(random(width),random(height),100));
-          targets.push(new Bomb(random(50,100), random(60,80),random(60,height), random(width/2), random(height), random(50,120)));
-        }
+        
         steps = stepsPerTarget;
       }
 
