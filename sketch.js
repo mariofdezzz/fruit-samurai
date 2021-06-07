@@ -118,7 +118,7 @@ function draw(){
       resetButton.move(width/2 - resetButton.width/2,height/3 + 100);
 
       resetButton.display();
-      paintFingers();      
+      paintFingers();    
   }
 }
 
@@ -145,7 +145,7 @@ function paintGame(){
           }
         }
 
-		if( lives < 1 ) endGame;
+		if( lives < 1 ) endGame();
 
         fill(0);
         rect(0,0,width,80);
