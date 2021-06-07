@@ -12,7 +12,7 @@ let playButton;
 let resetButton;
 let img;
 
-let songIndex;
+let songIndex = 0;
 let song = [];
 
 // menu inicial -> 0; juego -> 1; pausa ->2; fin juego -> 3;
@@ -136,7 +136,6 @@ function paintGame(){
                     
                   } else {
                     songIndex = round(random(0, 30));
-                    
                   }
 
                 targets[i].modPuntuation();
