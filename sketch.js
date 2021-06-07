@@ -6,6 +6,7 @@ let bombP = 40;
 let targets = [];
 let bombs = [];
 let puntuation = 0;
+let higScore = 0;
 let lives = 3;
 let pauseButton;
 let playButton;
@@ -19,7 +20,8 @@ function preload() {
   img = loadImage('assets/Bananas.png');
 }
 
-window.setup = function() {
+function setup() {
+//window.setup = function() {
   createCanvas(1280, 720);
   fill(255, 0, 0);
   preload()
@@ -32,8 +34,8 @@ window.setup = function() {
   resetButton = new ResetButton(200,300,400,50);
 }
 
-window.draw = function() {
-  
+function draw(){
+//window.draw = function() {
   switch(mode){
     case 0:
       background(0);
@@ -82,7 +84,11 @@ window.draw = function() {
         image(capture, 0, 0, width, height);
       pop();
       
-      paintGame();    
+      paintGame();   
+
+      playButton.move(width/2 - resetButton.width/2,height/3);
+      resetButton.move(width/2 - resetButton.width/2,height/3 + 100);
+
       playButton.display();
       resetButton.display();
       paintFingers();
@@ -103,10 +109,9 @@ window.draw = function() {
       textAlign(CENTER, CENTER);
       text("Has perdido", width/2, height/3);
       textSize(30);
-      text("Puntuación: " + puntuation, width/2, height/3 + 60);
+      text("Puntuación: " + puntuation + "    HigScore: " + higScore, width/2, height/3 + 60);
       
-      resetButton.x = width/2 - resetButton.width/2;
-      resetButton.y = height/3 + 100;
+      resetButton.move(width/2 - resetButton.width/2,height/3 + 100);
 
       resetButton.display();
       paintFingers();      
@@ -179,4 +184,10 @@ function ResetGame(){
   lives = 3;
   mode = 1;
   targets =[];
+}
+
+function EndGame(){
+  if(puntuation > higScore) higScore = puntuation;
+  mode = 3;
+  ChangeHide();
 }

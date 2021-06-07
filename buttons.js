@@ -24,6 +24,10 @@ class Buttom {
     rect(this.x, this.y, this.width, this.height);
   }
   
+  move(x, y){
+    this.x = x;
+    this.y = y;
+  }
   press(){
     
   }
@@ -88,8 +92,6 @@ class ResetButton extends Buttom{
   }
   
   press(){
-    console.log("hola");
-    //mode = 1;
     ResetGame();
     ChangeHide();
   }
