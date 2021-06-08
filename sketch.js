@@ -115,12 +115,17 @@ function paintGame(){
           targets[i].display();
 
           if(mode == 1){
-            if(landmarks){
+            // Se borran si salen de pantalla
+            if (targets[i].x > width || targets[i].y < -1) {
+              targets[i].remove();
+              targets.splice(i,1);
+
+            } else if(landmarks){
               if(targets[i].checkCollition(landmarks[8])){
                 targets[i].modPuntuation();
                 targets[i].remove();
                 targets.splice(i,1);
-              }  
+              } 
             }
           }
         }
