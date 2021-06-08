@@ -55,9 +55,9 @@ class TargetFactory {
         if( random(1) < this.bombP) {
             //bombs.push(new Bomb(random(width),random(height),100));
             // console.log("Bomba");
-            return new Bomb(random(80,125), random(60,120),-1, random(width/2), random(50,120), bombTexture);
+            return new Bomb(random(80,125), random(60,120),-1, random(width/2), random(100,130), bombTexture);
         } else {
-            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(50,120), fruitTextures[floor(random(0, fruitTextures.length - 1))]);
+            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(100,130), fruitTextures[floor(random(0, fruitTextures.length - 1))]);
         }
     }
 }
