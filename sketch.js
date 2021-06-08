@@ -10,14 +10,9 @@ let lives = 3;
 let pauseButton;
 let playButton;
 let resetButton;
-let img;
 
 // menu inicial -> 0; juego -> 1; pausa ->2; fin juego -> 3;
 let mode = 0;
- 
-function preload() {
-  img = loadImage('assets/platano.gif');
-}
 
 function setup() {
 //window.setup = function() {
@@ -123,6 +118,7 @@ function paintGame(){
             if(landmarks){
               if(targets[i].checkCollition(landmarks[8])){
                 targets[i].modPuntuation();
+                targets[i].remove();
                 targets.splice(i,1);
               }  
             }
@@ -181,6 +177,7 @@ function resetGame(){
   puntuation = 0;
   lives = 3;
   mode = 1;
+  targets.forEach( t => t.remove())
   targets =[];
 }
 
