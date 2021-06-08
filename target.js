@@ -38,7 +38,14 @@ class Target {
     }
 }
 
-const fruitTexture = 'assets/platano.gif'
+const fruitTextures = [
+    'assets/platano.gif',
+    'assets/cereza.gif',
+    'assets/kiwi.gif',
+    'assets/manzana.gif',
+    'assets/naranja.gif',
+    'assets/pina.gif'
+]
 const bombTexture = 'assets/bomba.gif'
 
 class TargetFactory {
@@ -50,7 +57,7 @@ class TargetFactory {
             // console.log("Bomba");
             return new Bomb(random(80,125), random(60,120),-1, random(width/2), random(50,120), bombTexture);
         } else {
-            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(50,120), fruitTexture);
+            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(50,120), fruitTextures[floor(random(0, fruitTextures.length - 1))]);
         }
     }
 }
