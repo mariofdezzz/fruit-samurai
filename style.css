@@ -1,8 +1,3 @@
-body {
-    margin:0;
-    padding:0;
-}
-
 html, body {
     margin: 0;
     padding: 0;
@@ -10,4 +5,10 @@ html, body {
 canvas {
     display: block;
 }
-.input_video,.output_canvas,.control-panel{display: none;}
+
+.input_video,
+.output_canvas,
+.control-panel,
+video {
+    display: none;
+}

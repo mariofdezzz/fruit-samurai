@@ -10,7 +10,6 @@ let lives = 3;
 let pauseButton;
 let playButton;
 let resetButton;
-let img;
 
 let songIndex = 0;
 let song = [];
@@ -128,7 +127,12 @@ function paintGame(){
           targets[i].display();
 
           if(mode == 1){
-            if(landmarks){
+            // Se borran si salen de pantalla
+            if (targets[i].x > width || targets[i].y < -1) {
+              targets[i].remove();
+              targets.splice(i,1);
+
+            } else if(landmarks){
               if(targets[i].checkCollition(landmarks[8])){
                   if (! song[songIndex].isPlaying()) {
    
@@ -139,8 +143,9 @@ function paintGame(){
                   }
 
                 targets[i].modPuntuation();
+                targets[i].remove();
                 targets.splice(i,1);
-              }  
+              } 
             }
           }
         }
@@ -197,6 +202,7 @@ function resetGame(){
   puntuation = 0;
   lives = 3;
   mode = 1;
+  targets.forEach( t => t.remove())
   targets =[];
 }
 

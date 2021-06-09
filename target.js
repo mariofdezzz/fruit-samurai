@@ -1,5 +1,5 @@
 class Target {
-    constructor(vo, theta, h, x, size) {
+    constructor(vo, theta, h, x, size, texture) {
         this.vo = vo;
         this.theta = theta * PI / 180;
         this.h = h;
@@ -9,6 +9,9 @@ class Target {
         this.g = 9.8;
         this.t = 0;
         this.size = size;
+        this.texture = createImg(texture);
+        this.texture.position(this.x, height - this.y, this.size, this.size);
+        this.texture.size(this.size, AUTO);
     }
 
     move() {
@@ -20,7 +23,8 @@ class Target {
     display() {
         fill(this.color);
         // texture(img);
-        image(img, this.x, height - this.y, this.size, this.size);
+        this.texture.position(this.x, height - this.y, this.size, this.size);
+        this.texture.size(this.size, AUTO);
 
         // circle(this.x, height - this.y, this.size);
     }
@@ -28,19 +32,32 @@ class Target {
     checkCollition(landmark) {
         return (dist(this.x, height - this.y, landmark.x * width, landmark.y * height) <= this.size);
     }
+
+    remove() {
+        this.texture.remove();
+    }
 }
 
-class TargetFactory {
+const fruitTextures = [
+    'assets/platano.gif',
+    'assets/cereza.gif',
+    'assets/kiwi.gif',
+    'assets/manzana.gif',
+    'assets/naranja.gif',
+    'assets/pina.gif'
+]
+const bombTexture = 'assets/bomba.gif'
 
-    static bombP = 0.4;
+class TargetFactory {
+    static bombP = 0.15;
 
     static getNewTarget(){
         if( random(1) < this.bombP) {
             //bombs.push(new Bomb(random(width),random(height),100));
-            console.log("Bomba");
-            return new Bomb(random(80,125), random(60,120),-1, random(width/2), random(50,120));
+            // console.log("Bomba");
+            return new Bomb(random(80,125), random(60,120),-1, random(width/2), random(100,130), bombTexture);
         } else {
-            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(50,120));
+            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(100,130), fruitTextures[floor(random(0, fruitTextures.length - 1))]);
         }
     }
 }
