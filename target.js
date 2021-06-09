@@ -10,7 +10,6 @@ class Target {
         this.t = 0;
         this.size = size;
         this.texture = createImg(texture);
-        console.log(this.size);
         this.texture.position(this.x, height - this.y, this.size, this.size);
         this.texture.size(this.size, this.size);
     }

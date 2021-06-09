@@ -19,7 +19,7 @@ let song = [];
 
 // menu inicial -> 0; juego -> 1; pausa ->2; fin juego -> 3;
 let mode = 0;
- 
+
 function preload() {
   img = loadImage('public/logo.png');
   madera = loadImage('assets/madera.jpg');
@@ -41,163 +41,161 @@ function setup() {
 
 
   mediaPipe();
-  pauseButton = new PauseButton(20,20,50,50);
-  playButton = new PlayButton(width/2,height/2,400,50);
-  resetButton = new ResetButton(200,300,400,50);
+  pauseButton = new PauseButton(20, 20, 50, 50);
+  playButton = new PlayButton(width / 2, height / 2, 400, 50);
+  resetButton = new ResetButton(200, 300, 400, 50);
 }
 
-function draw(){
-//window.draw = function() {
-  switch(mode){
+function draw() {
+  switch (mode) {
     case 0:
       background(0);
       push();
-        translate(width, 0);
-        scale(-1,1);
-        image(capture, 0, 0, width, height);
+      translate(width, 0);
+      scale(-1, 1);
+      image(capture, 0, 0, width, height);
       pop();
-      
+
       textSize(100);
       fill(0);
-      image(madera, 0, 0,width, height/5);
+      image(madera, 0, 0, width, height / 5);
 
       fill(225);
-      
-      text("fruit samurai", width/2, 50);
-      playButton.move((width/2) - playButton.width/2 ,(height/2) - playButton.height/2);
+
+      text("fruit samurai", width / 2, 50);
+      playButton.move((width / 2) - playButton.width / 2, (height / 2) - playButton.height / 2);
       playButton.display();
       paintFingers();
 
-    break;
+      break;
     case 1:
       background(0);
 
       push();
-       translate(width, 0);
-       scale(-1,1);
-       image(capture, 0, 0, width, height);
+      translate(width, 0);
+      scale(-1, 1);
+      image(capture, 0, 0, width, height);
       pop();
 
-      if( steps <= 0){  
+      if (steps <= 0) {
         targets.push(TargetFactory.getNewTarget());
 
-        stepsPerTarget = random(10,50);
-        
+        stepsPerTarget = random(10, 50);
+
         steps = stepsPerTarget;
       }
 
       paintGame();
-      //}
-      
+
       paintFingers();
 
       steps--;
-    break;
+      break;
     case 2:
       background(0);
       push();
-        translate(width, 0);
-        scale(-1,1);
-        image(capture, 0, 0, width, height);
+      translate(width, 0);
+      scale(-1, 1);
+      image(capture, 0, 0, width, height);
       pop();
-      
-      paintGame();   
 
-      playButton.move(width/2 - resetButton.width/2,height/3);
-      resetButton.move(width/2 - resetButton.width/2,height/3 + 100);
+      paintGame();
+
+      playButton.move(width / 2 - resetButton.width / 2, height / 3);
+      resetButton.move(width / 2 - resetButton.width / 2, height / 3 + 100);
 
       playButton.display();
       resetButton.display();
       paintFingers();
 
-    break;
+      break;
     case 3:
       background(0);
       push();
-       translate(width, 0);
-       scale(-1,1);
-       image(capture, 0, 0, width, height);
+      translate(width, 0);
+      scale(-1, 1);
+      image(capture, 0, 0, width, height);
       pop();
-      
+
       fill(0);
       //rect(width/4, height/4,width/2, height/3)
-      image(madera, width/4, height/4, width/2, height/3);
+      image(madera, width / 4, height / 4, width / 2, height / 3);
 
       textSize(60);
       fill(255);
       textAlign(CENTER, CENTER);
-      text("Has perdido", width/2, height/3);
+      text("Has perdido", width / 2, height / 3);
       textSize(30);
-      text("Puntuación: " + puntuation + "    HighScore: " + highScore, width/2, height/3 + 60);
-      
-      resetButton.move(width/2 - resetButton.width/2,height/3 + 100);
+      text("Puntuación: " + puntuation + "    HighScore: " + highScore, width / 2, height / 3 + 60);
+
+      resetButton.move(width / 2 - resetButton.width / 2, height / 3 + 100);
 
       resetButton.display();
-      paintFingers();    
+      paintFingers();
   }
 }
 
-function paintGame(){
-        for(var i = 0; i < targets.length; i++){
-          if(mode == 1) targets[i].move();
-          targets[i].display();
+function paintGame() {
+  for (var i = 0; i < targets.length; i++) {
+    if (mode == 1) targets[i].move();
+    targets[i].display();
 
-          if(mode == 1){
-            // Se borran si salen de pantalla
-            if (targets[i].x > width || targets[i].y < -1) {
-              targets[i].remove();
-              targets.splice(i,1);
+    if (mode == 1) {
+      // Se borran si salen de pantalla
+      if (targets[i].x > width || targets[i].y < -1) {
+        targets[i].remove();
+        targets.splice(i, 1);
 
-            } else if(landmarks){
-              if(targets[i].checkCollition(landmarks[8])){
-                  if (! song[songIndex].isPlaying()) {
-   
-                    song[songIndex].play();
-                    
-                  } else {
-                    songIndex = round(random(0, sounds));
-                  }
+      } else if (landmarks) {
+        if (targets[i].checkCollition(landmarks[8])) {
+          if (!song[songIndex].isPlaying()) {
 
-                targets[i].modPuntuation();
-                targets[i].remove();
-                targets.splice(i,1);
-              } 
-            }
+            song[songIndex].play();
+
+          } else {
+            songIndex = round(random(0, sounds));
           }
+
+          targets[i].modPuntuation();
+          targets[i].remove();
+          targets.splice(i, 1);
         }
+      }
+    }
+  }
 
-		if( lives < 1 ) endGame();
+  if (lives < 1) endGame();
 
-        fill(0);
-        //rect(0,0,width,80);
-	image(madera,0,0,width,80);
-        fill(225);
-        textAlign(LEFT);
-        textSize(30);
-        text("Puntuación: " + puntuation, pauseButton.x + pauseButton.width + 20,50);
-        text("Vidas: " + lives, pauseButton.x + pauseButton.width + 300, 50);
+  fill(0);
+  //rect(0,0,width,80);
+  image(madera, 0, 0, width, 80);
+  fill(225);
+  textAlign(LEFT);
+  textSize(30);
+  text("Puntuación: " + puntuation, pauseButton.x + pauseButton.width + 20, 50);
+  text("Vidas: " + lives, pauseButton.x + pauseButton.width + 300, 50);
 
-        //dibujar botón pausa
-        pauseButton.display();
+  //dibujar botón pausa
+  pauseButton.display();
 }
 
-function paintFingers(){
+function paintFingers() {
   if (landmarks) {
     fill(255);
     //circle(landmarks[8].x * width, landmarks[8].y * height, 40);
     paintKnife(landmarks[8].x * width, landmarks[8].y * height, 40);
-    if(!pauseButton.hide) pauseButton.checkPress(landmarks[8]);
-    if(!playButton.hide) playButton.checkPress(landmarks[8]);
-    if(!resetButton.hide) resetButton.checkPress(landmarks[8]);
+    if (!pauseButton.hide) pauseButton.checkPress(landmarks[8]);
+    if (!playButton.hide) playButton.checkPress(landmarks[8]);
+    if (!resetButton.hide) resetButton.checkPress(landmarks[8]);
   }
 }
 
-function paintKnife(x, y, size){
-  image(img, x - size/2, y - size/2, size, size);
+function paintKnife(x, y, size) {
+  image(img, x - size / 2, y - size / 2, size, size);
 }
 
-function changeHide(){
-  switch(mode){
+function changeHide() {
+  switch (mode) {
     case 0: //menu
       pauseButton.hide = true;
       playButton.hide = false;
@@ -220,16 +218,16 @@ function changeHide(){
   }
 }
 
-function resetGame(){
+function resetGame() {
   puntuation = 0;
   lives = 3;
   mode = 1;
-  targets.forEach( t => t.remove())
-  targets =[];
+  targets.forEach(t => t.remove())
+  targets = [];
 }
 
-function endGame(){
-  if(puntuation > highScore) highScore = puntuation;
+function endGame() {
+  if (puntuation > highScore) highScore = puntuation;
   mode = 3;
   changeHide();
 }
