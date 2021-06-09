@@ -49,7 +49,7 @@ const fruitTextures = [
 const bombTexture = 'assets/bomba.gif'
 
 class TargetFactory {
-    static bombP = 0.15;
+    static bombP = 0.20;
 
     static getNewTarget(){
         if( random(1) < this.bombP) {

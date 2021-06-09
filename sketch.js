@@ -14,6 +14,7 @@ let madera;
 let asianFont;
 
 let songIndex = 0;
+const sounds = 8;
 let song = [];
 
 // menu inicial -> 0; juego -> 1; pausa ->2; fin juego -> 3;
@@ -24,7 +25,7 @@ function preload() {
   madera = loadImage('assets/madera.jpg');
   asianFont = loadFont('assets/go3v2.ttf');
   soundFormats('mp3');
-  for (let i = 0; i <= 30; i++) {
+  for (let i = 0; i <= sounds; i++) {
     song[i] = loadSound('assets/sounds/sonido-espada-' + i + '.mp3');
   }
 }
@@ -154,7 +155,7 @@ function paintGame(){
                     song[songIndex].play();
                     
                   } else {
-                    songIndex = round(random(0, 30));
+                    songIndex = round(random(0, sounds));
                   }
 
                 targets[i].modPuntuation();
