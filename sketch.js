@@ -119,7 +119,9 @@ function draw(){
       pop();
       
       fill(0);
-      rect(width/4, height/4,width/2, height/3)
+      //rect(width/4, height/4,width/2, height/3)
+      image(madera, width/4, height/4, width/2, height/3);
+
       textSize(60);
       fill(255);
       textAlign(CENTER, CENTER);
