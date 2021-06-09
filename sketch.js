@@ -10,6 +10,7 @@ let lives = 3;
 let pauseButton;
 let playButton;
 let resetButton;
+let madera;
 
 let songIndex = 0;
 let song = [];
@@ -19,6 +20,7 @@ let mode = 0;
  
 function preload() {
   img = loadImage('public/logo.png');
+  madera = loadImage('assets/madera.jpg');
   soundFormats('mp3');
   for (let i = 0; i <= 30; i++) {
     song[i] = loadSound('assets/sounds/sonido-espada-' + i + '.mp3');
@@ -37,7 +39,7 @@ function setup() {
 
   mediaPipe();
   pauseButton = new PauseButton(20,20,50,50);
-  playButton = new PlayButton(200,200,400,50);
+  playButton = new PlayButton(width/2,height/2,400,50);
   resetButton = new ResetButton(200,300,400,50);
 }
 
@@ -52,6 +54,16 @@ function draw(){
         image(capture, 0, 0, width, height);
       pop();
       
+      textSize(100);
+      fill(0);
+      //rect(width/2 - 400, height/4 - 50, 800, 100);
+      image(madera,width/2 - 400, height/4 - 50,800, 100);
+      //image(madera, 0, 0,width, height/5);
+
+      fill(225);
+      
+      text("fruit samurai", width/2, height/4 );
+      playButton.move((width/2) - playButton.width/2 ,(height/2) - playButton.height/2);
       playButton.display();
       paintFingers();
 
@@ -154,7 +166,8 @@ function paintGame(){
 		if( lives < 1 ) endGame();
 
         fill(0);
-        rect(0,0,width,80);
+        //rect(0,0,width,80);
+	image(madera,0,0,width,80);
         fill(225);
         textAlign(LEFT);
         textSize(30);
