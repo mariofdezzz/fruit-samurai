@@ -11,6 +11,7 @@ let pauseButton;
 let playButton;
 let resetButton;
 let madera;
+let asianFont;
 
 let songIndex = 0;
 let song = [];
@@ -21,6 +22,7 @@ let mode = 0;
 function preload() {
   img = loadImage('public/logo.png');
   madera = loadImage('assets/madera.jpg');
+  asianFont = loadFont('assets/go3v2.ttf');
   soundFormats('mp3');
   for (let i = 0; i <= 30; i++) {
     song[i] = loadSound('assets/sounds/sonido-espada-' + i + '.mp3');
@@ -28,7 +30,7 @@ function preload() {
 }
 
 function setup() {
-//window.setup = function() {
+  textFont(asianFont);
   createCanvas(1280, 720);
   fill(255, 0, 0);
   preload()
