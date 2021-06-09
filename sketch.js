@@ -16,6 +16,7 @@ let asianFont;
 let songIndex = 0;
 const sounds = 8;
 let song = [];
+let bombSound;
 
 // menu inicial -> 0; juego -> 1; pausa ->2; fin juego -> 3;
 let mode = 0;
@@ -28,6 +29,7 @@ function preload() {
   for (let i = 0; i <= sounds; i++) {
     song[i] = loadSound('assets/sounds/sonido-espada-' + i + '.mp3');
   }
+  bombSound = loadSound('assets/bakuhatu01.wav');
 }
 
 function setup() {
@@ -148,12 +150,17 @@ function paintGame() {
 
       } else if (landmarks) {
         if (targets[i].checkCollition(landmarks[8])) {
-          if (!song[songIndex].isPlaying()) {
-
-            song[songIndex].play();
-
+          
+          if(targets[i] instanceof Bomb){
+            bombSound.play();
           } else {
-            songIndex = round(random(0, sounds));
+            if (!song[songIndex].isPlaying()) {
+
+              song[songIndex].play();
+  
+            } else {
+              songIndex = round(random(0, sounds));
+            }
           }
 
           targets[i].modPuntuation();
