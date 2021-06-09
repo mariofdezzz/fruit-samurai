@@ -92,6 +92,7 @@ class ResetButton extends Buttom{
   }
   
   press(){
+      console.log("reset");
     resetGame();
     changeHide();
   }

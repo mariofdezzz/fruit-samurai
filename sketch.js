@@ -1,4 +1,4 @@
-var landmarks;
+﻿var landmarks;
 let capture;
 let stepsPerTarget = 20;
 let steps = stepsPerTarget;
@@ -11,8 +11,18 @@ let pauseButton;
 let playButton;
 let resetButton;
 
+let songIndex = 0;
+let song = [];
+
 // menu inicial -> 0; juego -> 1; pausa ->2; fin juego -> 3;
 let mode = 0;
+ 
+function preload() {
+  img = loadImage('assets/platano.gif');
+  for (let i = 0; i <= 30; i++) {
+    song[i] = loadSound('assets/sounds/sonido-espada-' + i + '.mp3');
+  }
+}
 
 function setup() {
 //window.setup = function() {
@@ -21,6 +31,8 @@ function setup() {
   preload()
   capture = createCapture(VIDEO);
   capture.size(width, height);
+
+
 
   mediaPipe();
   pauseButton = new PauseButton(20,20,50,50);
@@ -105,7 +117,7 @@ function draw(){
       resetButton.move(width/2 - resetButton.width/2,height/3 + 100);
 
       resetButton.display();
-      paintFingers();      
+      paintFingers();    
   }
 }
 
@@ -122,6 +134,14 @@ function paintGame(){
 
             } else if(landmarks){
               if(targets[i].checkCollition(landmarks[8])){
+                  if (! song[songIndex].isPlaying()) {
+   
+                    song[songIndex].play();
+                    
+                  } else {
+                    songIndex = round(random(0, 30));
+                  }
+
                 targets[i].modPuntuation();
                 targets[i].remove();
                 targets.splice(i,1);
@@ -130,7 +150,7 @@ function paintGame(){
           }
         }
 
-		if( lives < 1 ) endGame;
+		if( lives < 1 ) endGame();
 
         fill(0);
         rect(0,0,width,80);
