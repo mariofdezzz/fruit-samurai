@@ -18,7 +18,8 @@ let song = [];
 let mode = 0;
  
 function preload() {
-  img = loadImage('assets/platano.gif');
+  img = loadImage('public/logo.png');
+  soundFormats('mp3');
   for (let i = 0; i <= 30; i++) {
     song[i] = loadSound('assets/sounds/sonido-espada-' + i + '.mp3');
   }
@@ -167,11 +168,16 @@ function paintGame(){
 function paintFingers(){
   if (landmarks) {
     fill(255);
-    circle(landmarks[8].x * width, landmarks[8].y * height, 40);
+    //circle(landmarks[8].x * width, landmarks[8].y * height, 40);
+    paintKnife(landmarks[8].x * width, landmarks[8].y * height, 40);
     if(!pauseButton.hide) pauseButton.checkPress(landmarks[8]);
     if(!playButton.hide) playButton.checkPress(landmarks[8]);
     if(!resetButton.hide) resetButton.checkPress(landmarks[8]);
   }
+}
+
+function paintKnife(x, y, size){
+  image(img, x - size/2, y - size/2, size, size);
 }
 
 function changeHide(){
