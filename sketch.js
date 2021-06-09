@@ -58,13 +58,11 @@ function draw(){
       
       textSize(100);
       fill(0);
-      //rect(width/2 - 400, height/4 - 50, 800, 100);
-      image(madera,width/2 - 400, height/4 - 50,800, 100);
-      //image(madera, 0, 0,width, height/5);
+      image(madera, 0, 0,width, height/5);
 
       fill(225);
       
-      text("fruit samurai", width/2, height/4 );
+      text("fruit samurai", width/2, 50);
       playButton.move((width/2) - playButton.width/2 ,(height/2) - playButton.height/2);
       playButton.display();
       paintFingers();
