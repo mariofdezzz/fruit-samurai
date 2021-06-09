@@ -26,7 +26,7 @@ class Target {
         this.texture.position(this.x, height - this.y, this.size, this.size);
         this.texture.size(this.size, AUTO);
 
-        // circle(this.x, height - this.y, this.size);
+        //circle(this.x, height - this.y, this.size);
     }
 
     checkCollition(landmark) {
@@ -57,7 +57,7 @@ class TargetFactory {
             // console.log("Bomba");
             return new Bomb(random(80,125), random(60,120),-1, random(width/2), random(100,130), bombTexture);
         } else {
-            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(100,130), fruitTextures[floor(random(0, fruitTextures.length - 1))]);
+            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(70,100), fruitTextures[floor(random(0, fruitTextures.length - 1))]);
         }
     }
 }

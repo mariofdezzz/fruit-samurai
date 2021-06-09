@@ -10,6 +10,7 @@ let lives = 3;
 let pauseButton;
 let playButton;
 let resetButton;
+let madera;
 
 let songIndex = 0;
 let song = [];
@@ -18,7 +19,9 @@ let song = [];
 let mode = 0;
  
 function preload() {
-  img = loadImage('assets/platano.gif');
+  img = loadImage('public/logo.png');
+  madera = loadImage('assets/madera.jpg');
+  soundFormats('mp3');
   for (let i = 0; i <= 30; i++) {
     song[i] = loadSound('assets/sounds/sonido-espada-' + i + '.mp3');
   }
@@ -36,7 +39,7 @@ function setup() {
 
   mediaPipe();
   pauseButton = new PauseButton(20,20,50,50);
-  playButton = new PlayButton(200,200,400,50);
+  playButton = new PlayButton(width/2,height/2,400,50);
   resetButton = new ResetButton(200,300,400,50);
 }
 
@@ -51,6 +54,16 @@ function draw(){
         image(capture, 0, 0, width, height);
       pop();
       
+      textSize(100);
+      fill(0);
+      //rect(width/2 - 400, height/4 - 50, 800, 100);
+      image(madera,width/2 - 400, height/4 - 50,800, 100);
+      //image(madera, 0, 0,width, height/5);
+
+      fill(225);
+      
+      text("fruit samurai", width/2, height/4 );
+      playButton.move((width/2) - playButton.width/2 ,(height/2) - playButton.height/2);
       playButton.display();
       paintFingers();
 
@@ -106,7 +119,9 @@ function draw(){
       pop();
       
       fill(0);
-      rect(width/4, height/4,width/2, height/3)
+      //rect(width/4, height/4,width/2, height/3)
+      image(madera, width/4, height/4, width/2, height/3);
+
       textSize(60);
       fill(255);
       textAlign(CENTER, CENTER);
@@ -153,7 +168,8 @@ function paintGame(){
 		if( lives < 1 ) endGame();
 
         fill(0);
-        rect(0,0,width,80);
+        //rect(0,0,width,80);
+	image(madera,0,0,width,80);
         fill(225);
         textAlign(LEFT);
         textSize(30);
@@ -167,11 +183,16 @@ function paintGame(){
 function paintFingers(){
   if (landmarks) {
     fill(255);
-    circle(landmarks[8].x * width, landmarks[8].y * height, 40);
+    //circle(landmarks[8].x * width, landmarks[8].y * height, 40);
+    paintKnife(landmarks[8].x * width, landmarks[8].y * height, 40);
     if(!pauseButton.hide) pauseButton.checkPress(landmarks[8]);
     if(!playButton.hide) playButton.checkPress(landmarks[8]);
     if(!resetButton.hide) resetButton.checkPress(landmarks[8]);
   }
+}
+
+function paintKnife(x, y, size){
+  image(img, x - size/2, y - size/2, size, size);
 }
 
 function changeHide(){
