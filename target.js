@@ -11,7 +11,7 @@ class Target {
         this.size = size;
         this.texture = createImg(texture);
         this.texture.position(this.x, height - this.y, this.size, this.size);
-        this.texture.size(this.size, AUTO);
+        this.texture.size(this.size, this.size);
     }
 
     move() {
@@ -23,10 +23,9 @@ class Target {
     display() {
         fill(this.color);
         // texture(img);
-        this.texture.position(this.x, height - this.y, this.size, this.size);
-        this.texture.size(this.size, AUTO);
-
-        //circle(this.x, height - this.y, this.size);
+        circle(this.x, height - this.y, this.size);
+        this.texture.position(this.x - this.size/2, height - this.y - this.size/2, this.size, this.size);
+        this.texture.size(this.size, this.size);        
     }
 
     checkCollition(landmark) {
@@ -49,7 +48,7 @@ const fruitTextures = [
 const bombTexture = 'assets/bomba.gif'
 
 class TargetFactory {
-    static bombP = 0.15;
+    static bombP = 0.20;
 
     static getNewTarget(){
         if( random(1) < this.bombP) {
@@ -57,7 +56,7 @@ class TargetFactory {
             // console.log("Bomba");
             return new Bomb(random(80,125), random(60,120),-1, random(width/2), random(100,130), bombTexture);
         } else {
-            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(70,100), fruitTextures[floor(random(0, fruitTextures.length - 1))]);
+            return new Fruit(random(80,125), random(60,80),-1, random(width/2), random(50,80), fruitTextures[floor(random(0, fruitTextures.length))]);
         }
     }
 }

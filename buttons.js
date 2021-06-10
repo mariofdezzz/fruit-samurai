@@ -28,6 +28,11 @@ class Buttom {
     this.x = x;
     this.y = y;
   }
+  
+  resize(xwidth, yheight){
+    this.width = xwidth;
+    this.height = yheight;
+  }
   press(){
     
   }
