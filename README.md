@@ -6,8 +6,12 @@ No te confíes, porque podrías morir en el intento. Mientras cortas frutas, apa
 
 Tu único objetivo es cortar la mayor cantidad de fruta que puedas para demostrar que eres digno.
 
-[![]()]()
-
+<p align="center">
+  
+  <img alt="Menu del juego" src="https://user-images.githubusercontent.com/47794126/121575173-f600a880-ca1e-11eb-9b08-4e53ef707096.gif">
+  
+</p>
+  
 ## 🚀 Funcionamiento
 
 Mediante tu _webcam_ se detectará la posición de tu mano para posicionar un cuchillo en tu dedo índice. Con este cuchillo podrás interactuar con los objetos que aparecerán en pantalla.
