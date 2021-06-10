@@ -27,7 +27,7 @@ Al morir, se guardará tu puntuación para que puedas intentar superarla.
 
 - [P5.js](https://p5js.org/es/) 
 - [MediaPipe](https://mediapipe.dev/) 
-- Fuente de texto en [dafont]()
+- Fuente de texto en [dafont](https://www.dafont.com/es/gang-of-three.font)
 
 ---
 
