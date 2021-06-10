@@ -9,7 +9,7 @@ class Target {
         this.g = 9.8;
         this.t = 0;
         this.size = size;
-        this.texture = createImg(texture);
+        this.texture = createImg(texture, 'Target');
         this.texture.position(this.x, height - this.y, this.size, this.size);
         this.texture.size(this.size, this.size);
     }

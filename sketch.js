@@ -21,6 +21,8 @@ let bombSound;
 // menu inicial -> 0; juego -> 1; pausa ->2; fin juego -> 3;
 let mode = 0;
 
+let fruitSample, bombExample;
+
 function preload() {
   img = loadImage('public/logo.png');
   madera = loadImage('assets/madera.jpg');
@@ -40,7 +42,13 @@ function setup() {
   capture = createCapture(VIDEO);
   capture.size(width, height);
 
+  fruitSample = createImg('assets/cereza.gif', 'Cereza');
+  fruitSample.position(width/4, height/2 + 25, 70, 70);
+  fruitSample.size(150, 150);
 
+  bombExample = createImg('assets/bomba.gif');
+  bombExample.position(3*width/5, height/2 + 50, 70, 70);
+  bombExample.size(100, 100);
 
   mediaPipe();
   pauseButton = new PauseButton(20, 20, 50, 50);
@@ -68,6 +76,12 @@ function draw() {
       playButton.move((width / 2) - playButton.width / 2, (height / 2) - playButton.height / 2);
       playButton.display();
       paintFingers();
+
+      fill(255);
+      textSize(25);
+      text("Corta las frutas", width/3 - 25, 2*height/3 + 50);
+
+      text("Esquiva las bombas", 2*width/3 - 25, 2*height/3 + 50);
 
       break;
     case 1:

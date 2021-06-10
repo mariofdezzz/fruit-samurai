@@ -78,6 +78,8 @@ class PlayButton extends Buttom{
     //this.hide = true;
     //pauseButton.hide = false;
     changeHide();
+    fruitSample.remove();
+    bombExample.remove();
   }
 }
 
